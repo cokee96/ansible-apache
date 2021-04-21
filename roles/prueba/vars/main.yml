@@ -1,0 +1,7 @@
+---
+httpd_pkg:
+ - httpd
+ - php
+ - php-mysql
+httpd_srv: httpd
+port: 8080

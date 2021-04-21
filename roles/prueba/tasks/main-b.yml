@@ -1,0 +1,37 @@
+---
+# tasks file for roles/prueba
+- name: Instalación de firewalld
+  yum:
+   name: firewalld
+   state: latest
+
+- name: Iniciación del servicio firewalld
+  service:
+   name: firewalld
+   state: started
+   enabled: true
+
+- name: Instalación de httpd
+  yum:
+   name: "{{ item }}"
+   state: latest
+  with_items:
+   - "{{ httpd_pkg }}"
+
+- name: Iniciación del servicio httpd
+  service:
+   name: "{{ httpd_srv }}"
+   enabled: true
+   state: started
+
+- name: Apertura del puerto httpd
+  firewalld:
+   port: 8080/tcp
+   state: enabled
+   immediate: true
+   permanent: true
+
+- name: Creación de index.html
+  copy:
+    content: "HOLA"
+    dest: /var/www/html/index.html

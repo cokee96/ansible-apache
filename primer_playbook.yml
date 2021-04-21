@@ -1,0 +1,4 @@
+- hosts: maquinas
+  tasks:
+  - name: Check connectivity
+    ping:
