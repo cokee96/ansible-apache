@@ -12,17 +12,19 @@
   with_items:
    - "{{ httpd_pkg }}"
 
-- name: Configuración de puerto "{{ port }}"
-  lineinfile:
-   path: /etc/httpd/conf/httpd.conf
-   regexp: '^(.*)Listen (.*)$'
-   line: 'Listen {{ port }}'
-
 - name: Iniciación del servicio httpd
   service:
    name: "{{ httpd_srv }}"
    enabled: true
    state: started
+
+- name: Configuración de puerto "{{ port }}"
+  lineinfile:
+   path: /etc/httpd/conf/httpd.conf
+   regexp: '^(.*)Listen (.*)$'
+   line: 'Listen {{ port }}'
+  notify:
+  - restart_httpd
 
 - name: Creación de index.html
   copy:
