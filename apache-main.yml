@@ -1,4 +1,4 @@
 - hosts: maquinas 
   become: yes
   roles:
-   - prueba
+   - galaxy
