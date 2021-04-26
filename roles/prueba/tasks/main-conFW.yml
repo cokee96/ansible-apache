@@ -5,6 +5,12 @@
    name: firewalld
    state: latest
 
+- name: Iniciación del servicio firewalld
+  service:
+   name: firewalld
+   state: started
+   enabled: false
+
 - name: Instalación de httpd
   yum:
    name: "{{ item }}"
@@ -23,6 +29,14 @@
    name: "{{ httpd_srv }}"
    enabled: true
    state: started
+
+- name: Apertura del puerto "{{ port }}"
+  firewalld:
+   port: "{{ port }}/tcp"
+   state: stopped
+   immediate: true
+   permanent: true
+
 
 - name: Creación de index.html
   copy:
