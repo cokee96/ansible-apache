@@ -9,7 +9,7 @@
   service:
    name: firewalld
    state: started
-   enabled: true
+   enabled: false
 
 - name: Instalación de httpd
   yum:
@@ -33,7 +33,7 @@
 - name: Apertura del puerto "{{ port }}"
   firewalld:
    port: "{{ port }}/tcp"
-   state: enabled
+   state: stopped
    immediate: true
    permanent: true
 
