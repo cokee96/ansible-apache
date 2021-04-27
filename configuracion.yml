@@ -1,0 +1,7 @@
+---
+- hosts: maquinas
+  remote_user: ansible
+  become: yes
+  roles:
+   - configuracion
+

@@ -1,0 +1,15 @@
+---
+- name: Iniciación del servicio httpd
+  service:
+   name: "{{ httpd_srv }}"
+   enabled: true
+   state: started
+
+- name: Iniciación del servicio "{{ pkg_inst }}"
+  service:
+   name: "{{ pkg_inst }}"
+   state: started
+   enabled: true
+  when: pkg_inst is defined and pkg_inst != ''
+
+

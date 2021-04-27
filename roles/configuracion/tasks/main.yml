@@ -1,0 +1,13 @@
+---
+- name: Configuración de puerto "{{ port }}"
+  lineinfile:
+   path: /etc/httpd/conf/httpd.conf
+   regexp: '^(.*)Listen (.*)$'
+   line: 'Listen {{ port }}'
+  notify:
+  - restart_httpd
+
+- name: Creación de index.html
+  copy:
+    content: "{{contenido}}"
+    dest: /var/www/html/index.html
