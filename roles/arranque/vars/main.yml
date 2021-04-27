@@ -5,4 +5,4 @@ httpd_pkg:
  - php-mysql
 httpd_srv: httpd
 port: 8080
-pkg_inst:
+pkg_inst: ''
