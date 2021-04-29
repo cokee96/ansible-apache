@@ -1,0 +1,26 @@
+---
+- name: Obtención de las credenciales
+  include_vars: pass.yml
+
+- name: Add the user {{name}}
+  user:
+    name: "{{name}}"
+    password: "{{usr[name]}}"
+    non_unique: yes
+  when: name is defined and name != '' and name in usr and action == 'create'
+
+- name: Delete the user {{name}}
+  user:
+    name: "{{name}}"
+    state: absent
+    remove: yes
+  when: name is defined and name != '' and name in usr and action == 'delete'
+
+- debug:
+    msg: "No ha introducido la acción create o delete"
+  when: action != 'create' and action != 'delete'
+
+- debug:
+    msg: "El nombre que ha introducido no existe en la BBDD"
+  when: name not in usr
+

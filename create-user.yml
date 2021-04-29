@@ -1,0 +1,6 @@
+---
+- hosts: maquinas
+  become: yes
+  roles:
+   - create-user
+
