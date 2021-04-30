@@ -39,6 +39,8 @@
     comment: "{{item.value.fullname}}"
     non_unique: yes
   loop: "{{ usr | dict2items }}"
+  loop_control:
+    label: "{{item.value.name}}"
   when: action == 'create' and name == 'all'
 
 - debug:
@@ -47,5 +49,9 @@
 
 - debug:
     msg: "El nombre que ha introducido no existe en la BBDD"
-  when: name not in usr
+  when: name not in usr and name != 'all'
+
+- debug:
+    msg: "No existe el borrado masivo de usuarios"
+  when: name == 'all' and action == 'delete'
 
