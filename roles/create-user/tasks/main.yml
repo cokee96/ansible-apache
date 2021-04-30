@@ -32,6 +32,15 @@
       when: action == 'create'
   when: name is defined and name != '' and name in usr
 
+- name: Instalación de todos los usuarios a la vez
+  user:
+    name: "{{item.value.name}}"
+    password: "{{item.value.password}}"
+    comment: "{{item.value.fullname}}"
+    non_unique: yes
+  loop: "{{ usr | dict2items }}"
+  when: action == 'create' and name == 'all'
+
 - debug:
     msg: "No ha introducido la acción create o delete"
   when: action != 'create' and action != 'delete'
