@@ -1,21 +1,36 @@
 ---
 #- name: Obtención de las credenciales
 #  include_vars: pass.yml
+- name: Solo si esta en la BBDD
+  block:
+    - name: Add the user {{name}}
+      user:
+        name: "{{name}}"
+        password: "{{usr[name].password}}"
+        comment: "{{usr[name].fullname}}"
+        non_unique: yes
+      when: action == 'create'
 
-- name: Add the user {{name}}
-  user:
-    name: "{{name}}"
-    password: "{{usr[name].password}}"
-    comment: "{{usr[name].fullname}}"
-    non_unique: yes
-  when: name is defined and name != '' and name in usr and action == 'create'
+    - name: Delete the user {{name}}
+      user:
+        name: "{{name}}"
+        state: absent
+        remove: yes
+      when: action == 'delete'
 
-- name: Delete the user {{name}}
-  user:
-    name: "{{name}}"
-    state: absent
-    remove: yes
-  when: name is defined and name != '' and name in usr and action == 'delete'
+    - name: Copiado de archivo README.md
+      copy: 
+        src: README.md
+        dest: /home/{{name}}
+        force: yes
+      when: action == 'create'
+
+    - name: Copiado de archivo personalizado
+      copy:
+        content: "Home del usuario {{name}}, created by Ansible on {{ '%Y-%m-%d' | strftime }}"
+        dest: /home/{{name}}/content.md
+      when: action == 'create'
+  when: name is defined and name != '' and name in usr
 
 - debug:
     msg: "No ha introducido la acción create o delete"
