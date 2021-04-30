@@ -1,3 +1,19 @@
 name: ''
 action: ''
-
+usr:
+  john:
+    name: "john"
+    fullname: "John Lennon"
+    password: $6$WHj9vLlxlyidk./X$.1GQBnE0df/joptQoGBRw.//dN2tm3ebf7XKkbgRPTlsv48vZiGq/1wN0E/koh2b30ie2ypa3k24GwzsE01AV.
+  paul:
+    name: "paul"
+    fullname: "Paul McCartney"
+    password: $6$OfI34eYidxPFOQ94$ah6QSRSzefj.wLgyAtJKf2XQgqbrnqeILLWo7w.IcNDVoEdCJxAyepY7OMGFMubfV08zdRnfinpC9XPSwGDcY.
+  george:
+    name: "george"
+    fullname: "George Harrison"
+    password: $6$cVeYka3.KXmemL93$DbvmoUIwp7uUPIMif2OX/5Oa3L/snRNLVt9ynofdkyDDAbCbeQGomXsY7kRC.kwk0h4YPB89I0pGm75dosVqp.
+  ringo:
+    name: "ringo"
+    fullname: "Ringo Starr"
+    password: $6$Yj8YaEcBhYFNOFRv$KR.BhvIZzNxgHEDuIgjIU2yUqb.5MBh60v77torLTxLRN/axIUoOoyUnxUEgyNDO43HUvf5a2s1DcP.jNSzkd1

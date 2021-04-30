@@ -1,11 +1,12 @@
 ---
-- name: Obtención de las credenciales
-  include_vars: pass.yml
+#- name: Obtención de las credenciales
+#  include_vars: pass.yml
 
 - name: Add the user {{name}}
   user:
     name: "{{name}}"
-    password: "{{usr[name]}}"
+    password: "{{usr[name].password}}"
+    comment: "{{usr[name].fullname}}"
     non_unique: yes
   when: name is defined and name != '' and name in usr and action == 'create'
 
