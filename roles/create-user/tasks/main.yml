@@ -24,12 +24,18 @@
         dest: /home/{{name}}
         force: yes
       when: action == 'create'
-
+    
     - name: Copiado de archivo personalizado
-      copy:
-        content: "Home del usuario {{name}}, created by Ansible on {{ '%Y-%m-%d' | strftime }}"
+      template:
+        src: personalizado.j2
         dest: /home/{{name}}/content.md
       when: action == 'create'
+
+    # - name: Copiado de archivo personalizado
+    #   copy:
+    #     content: "Home del usuario {{name}}, created by Ansible on {{ '%Y-%m-%d' | strftime }}"
+    #     dest: /home/{{name}}/content.md
+    #   when: action == 'create'
   when: name is defined and name != '' and name in usr
 
 - name: Instalación de todos los usuarios a la vez
