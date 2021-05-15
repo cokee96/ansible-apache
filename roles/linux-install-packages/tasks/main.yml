@@ -4,3 +4,5 @@
    name: "{{pkg_inst}}"
    state: latest
   when: pkg_inst is defined and pkg_inst != ''
+  with_items:
+   - "{{ pkg_inst}}"
